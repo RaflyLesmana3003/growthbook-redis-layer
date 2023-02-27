@@ -3,4 +3,5 @@ This repository contains the Redis layer for GrowthBook, an open-source A/B test
 
 # Getting started
 `git clone`
+
 `docker compose up -d`
