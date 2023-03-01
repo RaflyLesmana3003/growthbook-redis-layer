@@ -1,10 +1,11 @@
 const express = require("express");
 const Redis = require("ioredis");
 const fetch = require("node-fetch");
-
+var cors = require('cors')
 
 
 const app = express();
+app.use(cors())
 const redis = new Redis('redis://redis:6379');
 
 app.get("/api/features/:sdk", async (req, res) => {
@@ -16,7 +17,7 @@ app.get("/api/features/:sdk", async (req, res) => {
     res.send(value);
   } else {
     // Retrieve data from Growthbook Proxy API
-    fetch("http://proxy:3300/api/features/"+req.params.sdk)
+    fetch("http://growthbook:3100/api/features/"+req.params.sdk)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to retrieve data from Growthbook Proxy API");
